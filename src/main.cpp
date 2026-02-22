@@ -230,7 +230,6 @@ int main(int argc, char* argv[]) {
             if (bytes > 0) {
                 buffer[bytes] = '\0';
                 
-                // New logic: Use a stringstream or string search to handle clumped packets
                 std::string data(buffer);
                 size_t pos = 0;
                 while ((pos = data.find('\n')) != std::string::npos) {
@@ -292,10 +291,10 @@ int main(int argc, char* argv[]) {
                                 discord_tree.push_back(new_server);
                             }
                         }
-                    } catch (
+                    } catch (const std::exception& e) {
                         std::cerr << "[JSON ERR] Caught mangled packet: " << e.what() << std::endl;
-                        continue;
-                    ) {}
+                        continue; 
+                    }
                 }
             } else {
                 break; 
