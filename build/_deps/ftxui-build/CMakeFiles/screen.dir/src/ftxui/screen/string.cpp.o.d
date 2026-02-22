@@ -1,7 +1,7 @@
 _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.o: \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/src/ftxui/screen/string.cpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/src/ftxui/screen/string.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/string.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/string.hpp \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
  /usr/include/c++/13/cstdint \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -123,6 +123,6 @@ _deps/ftxui-build/CMakeFiles/screen.dir/src/ftxui/screen/string.cpp.o: \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/deprecated.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/deprecated.hpp \
  /usr/include/c++/13/array /usr/include/c++/13/compare \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/src/ftxui/screen/string_internal.hpp
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/src/ftxui/screen/string_internal.hpp

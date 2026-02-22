@@ -1,7 +1,7 @@
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options.cpp.o: \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/src/ftxui/component/component_options.cpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/src/ftxui/component/component_options.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/component/component_options.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/component/component_options.hpp \
  /usr/include/c++/13/chrono /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -45,7 +45,7 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options
  /usr/include/c++/13/ext/numeric_traits.h \
  /usr/include/c++/13/bits/cpp_type_traits.h \
  /usr/include/c++/13/ext/type_traits.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/component/animation.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/component/animation.hpp \
  /usr/include/c++/13/functional /usr/include/c++/13/bits/stl_function.h \
  /usr/include/c++/13/bits/move.h /usr/include/c++/13/backward/binders.h \
  /usr/include/c++/13/tuple /usr/include/c++/13/bits/stl_pair.h \
@@ -112,8 +112,8 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/c++/13/bits/std_abs.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/component/event.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/component/mouse.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/component/event.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/component/mouse.hpp \
  /usr/include/c++/13/string /usr/include/c++/13/bits/stringfwd.h \
  /usr/include/c++/13/bits/char_traits.h \
  /usr/include/c++/13/bits/postypes.h /usr/include/c++/13/cwchar \
@@ -145,8 +145,8 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/13/bits/charconv.h \
  /usr/include/c++/13/bits/basic_string.tcc \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/direction.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/elements.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/direction.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/elements.hpp \
  /usr/include/c++/13/memory \
  /usr/include/c++/13/bits/stl_raw_storage_iter.h \
  /usr/include/c++/13/bits/align.h /usr/include/c++/13/bits/unique_ptr.h \
@@ -175,22 +175,22 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/component_options
  /usr/include/c++/13/backward/auto_ptr.h \
  /usr/include/c++/13/pstl/glue_memory_defs.h \
  /usr/include/c++/13/pstl/execution_defs.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/canvas.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/color.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/screen.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/box.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/terminal.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/flexbox_config.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/linear_gradient.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/canvas.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/color.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/screen.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/box.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/terminal.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/flexbox_config.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/linear_gradient.hpp \
  /usr/include/c++/13/optional \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/node.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/requirement.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/util/ref.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/string.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/deprecated.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/node.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/requirement.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/util/ref.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/string.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/deprecated.hpp \
  /usr/include/c++/13/variant \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/take_any_args.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/deprecated.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/component/component_base.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/component/captured_mouse.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/take_any_args.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/deprecated.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/component/component_base.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/component/captured_mouse.hpp \
  /usr/include/c++/13/utility /usr/include/c++/13/bits/stl_relops.h

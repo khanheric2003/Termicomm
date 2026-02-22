@@ -1,5 +1,5 @@
 _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.o: \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/src/ftxui/component/event.cpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/src/ftxui/component/event.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13/utility \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -16,8 +16,8 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.o: \
  /usr/include/c++/13/bits/stl_pair.h /usr/include/c++/13/type_traits \
  /usr/include/c++/13/bits/move.h /usr/include/c++/13/bits/utility.h \
  /usr/include/c++/13/initializer_list \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/component/event.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/component/mouse.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/component/event.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/component/mouse.hpp \
  /usr/include/c++/13/functional /usr/include/c++/13/bits/stl_function.h \
  /usr/include/c++/13/backward/binders.h /usr/include/c++/13/tuple \
  /usr/include/c++/13/bits/uses_allocator.h \
@@ -135,9 +135,9 @@ _deps/ftxui-build/CMakeFiles/component.dir/src/ftxui/component/event.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/13/bits/charconv.h \
  /usr/include/c++/13/bits/basic_string.tcc \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/string.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/string.hpp \
  /usr/include/c++/13/cstdint \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/deprecated.hpp
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/deprecated.hpp

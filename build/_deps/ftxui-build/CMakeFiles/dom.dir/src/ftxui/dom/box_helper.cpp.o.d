@@ -1,7 +1,7 @@
 _deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/box_helper.cpp.o: \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/src/ftxui/dom/box_helper.cpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/src/ftxui/dom/box_helper.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/src/ftxui/dom/box_helper.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/src/ftxui/dom/box_helper.hpp \
  /usr/include/c++/13/vector /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

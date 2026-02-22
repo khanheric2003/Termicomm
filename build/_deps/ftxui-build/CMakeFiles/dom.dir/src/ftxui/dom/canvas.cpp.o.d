@@ -1,7 +1,7 @@
 _deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/canvas.cpp.o: \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/src/ftxui/dom/canvas.cpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/src/ftxui/dom/canvas.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/canvas.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/canvas.hpp \
  /usr/include/c++/13/cstddef \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -134,12 +134,12 @@ _deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/canvas.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/13/bits/charconv.h \
  /usr/include/c++/13/bits/basic_string.tcc \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/color.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/color.hpp \
  /usr/include/c++/13/cstdint \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/screen.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/screen.hpp \
  /usr/include/c++/13/memory \
  /usr/include/c++/13/bits/stl_raw_storage_iter.h \
  /usr/include/c++/13/bits/align.h /usr/include/c++/13/bits/unique_ptr.h \
@@ -172,8 +172,8 @@ _deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/canvas.cpp.o: \
  /usr/include/c++/13/backward/auto_ptr.h \
  /usr/include/c++/13/pstl/glue_memory_defs.h \
  /usr/include/c++/13/pstl/execution_defs.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/box.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/terminal.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/box.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/terminal.hpp \
  /usr/include/c++/13/algorithm \
  /usr/include/c++/13/pstl/glue_algorithm_defs.h /usr/include/c++/13/cmath \
  /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/math-vector.h \
@@ -201,16 +201,16 @@ _deps/ftxui-build/CMakeFiles/dom.dir/src/ftxui/dom/canvas.cpp.o: \
  /usr/include/c++/13/bits/stl_tree.h /usr/include/c++/13/bits/stl_map.h \
  /usr/include/c++/13/bits/stl_multimap.h /usr/include/c++/13/utility \
  /usr/include/c++/13/bits/stl_relops.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/elements.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/direction.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/flexbox_config.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/linear_gradient.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/elements.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/direction.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/flexbox_config.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/linear_gradient.hpp \
  /usr/include/c++/13/optional \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/node.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/requirement.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/util/ref.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/string.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/screen/deprecated.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/node.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/requirement.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/util/ref.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/string.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/screen/deprecated.hpp \
  /usr/include/c++/13/variant /usr/include/c++/13/bits/parse_numbers.h \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/take_any_args.hpp \
- /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include/ftxui/dom/deprecated.hpp
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/take_any_args.hpp \
+ /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include/ftxui/dom/deprecated.hpp

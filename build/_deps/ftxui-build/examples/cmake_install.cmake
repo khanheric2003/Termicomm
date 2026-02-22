@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/examples
+# Install script for directory: /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/examples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

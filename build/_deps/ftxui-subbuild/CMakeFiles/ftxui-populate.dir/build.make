@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild
+CMAKE_SOURCE_DIR = /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild
+CMAKE_BINARY_DIR = /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild
 
 # Utility rule file for ftxui-populate.
 
@@ -77,60 +77,60 @@ CMakeFiles/ftxui-populate-complete: ftxui-populate-prefix/src/ftxui-populate-sta
 CMakeFiles/ftxui-populate-complete: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-build
 CMakeFiles/ftxui-populate-complete: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-install
 CMakeFiles/ftxui-populate-complete: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-test
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'ftxui-populate'"
-	/usr/bin/cmake -E make_directory /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles
-	/usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate-complete
-	/usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-done
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'ftxui-populate'"
+	/usr/bin/cmake -E make_directory /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles
+	/usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate-complete
+	/usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-done
 
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update:
 .PHONY : ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update
 
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-build: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-configure
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'ftxui-populate'"
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-build && /usr/bin/cmake -E echo_append
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-build && /usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'ftxui-populate'"
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-build && /usr/bin/cmake -E echo_append
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-build && /usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-build
 
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-configure: ftxui-populate-prefix/tmp/ftxui-populate-cfgcmd.txt
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-configure: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-patch
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'ftxui-populate'"
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-build && /usr/bin/cmake -E echo_append
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-build && /usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-configure
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'ftxui-populate'"
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-build && /usr/bin/cmake -E echo_append
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-build && /usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-configure
 
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-download: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-gitinfo.txt
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-download: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-mkdir
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'ftxui-populate'"
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps && /usr/bin/cmake -P /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-gitclone.cmake
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps && /usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-download
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'ftxui-populate'"
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps && /usr/bin/cmake -P /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-gitclone.cmake
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps && /usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-download
 
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-install: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'ftxui-populate'"
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-build && /usr/bin/cmake -E echo_append
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-build && /usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-install
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'ftxui-populate'"
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-build && /usr/bin/cmake -E echo_append
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-build && /usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-install
 
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-mkdir:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'ftxui-populate'"
-	/usr/bin/cmake -Dcfgdir= -P /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-mkdirs.cmake
-	/usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-mkdir
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'ftxui-populate'"
+	/usr/bin/cmake -Dcfgdir= -P /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-mkdirs.cmake
+	/usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-mkdir
 
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-patch: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-patch-info.txt
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-patch: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "No patch step for 'ftxui-populate'"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "No patch step for 'ftxui-populate'"
 	/usr/bin/cmake -E echo_append
-	/usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-patch
+	/usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-patch
 
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update:
 .PHONY : ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update
 
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-test: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-install
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'ftxui-populate'"
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-build && /usr/bin/cmake -E echo_append
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-build && /usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-test
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'ftxui-populate'"
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-build && /usr/bin/cmake -E echo_append
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-build && /usr/bin/cmake -E touch /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-test
 
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update: ftxui-populate-prefix/tmp/ftxui-populate-gitupdate.cmake
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update-info.txt
 ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update: ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-download
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'ftxui-populate'"
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src && /usr/bin/cmake -Dcan_fetch=YES -P /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-gitupdate.cmake
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'ftxui-populate'"
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src && /usr/bin/cmake -Dcan_fetch=YES -P /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-gitupdate.cmake
 
 ftxui-populate: CMakeFiles/ftxui-populate
 ftxui-populate: CMakeFiles/ftxui-populate-complete
@@ -154,6 +154,6 @@ CMakeFiles/ftxui-populate.dir/clean:
 .PHONY : CMakeFiles/ftxui-populate.dir/clean
 
 CMakeFiles/ftxui-populate.dir/depend:
-	cd /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/ftxui-populate.dir/depend
 

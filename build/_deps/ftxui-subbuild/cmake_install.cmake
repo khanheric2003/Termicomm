@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild
+# Install script for directory: /mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-subbuild/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-subbuild/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

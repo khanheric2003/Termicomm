@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/src -I/mnt/c/Users/duykh/Documents/homework/hacked2026/build/_deps/ftxui-src/include
+CXX_INCLUDES = -I/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/src -I/mnt/c/Users/duykh/Documents/homework/Termicomm/build/_deps/ftxui-src/include
 
 CXX_FLAGS = -std=gnu++17
 
