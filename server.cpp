@@ -93,7 +93,11 @@ void handle_client(int client_socket) {
 
     while (true) {
         int bytes_received = recv(client_socket, buffer, sizeof(buffer) - 1, 0);
-        
+        // Debug
+        if (bytes_received > 0) {
+            buffer[bytes_received] = '\0';
+            std::cout << "[DEBUG] Raw Data Received: " << buffer << std::endl; 
+        }        
         if (bytes_received <= 0) {
             std::cout << "[LOG] User '" << username << "' disconnected." << std::endl;
             json left_msg = {{"op", 5}, {"d", {{"username", username}}}};

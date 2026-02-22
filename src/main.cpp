@@ -118,10 +118,15 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
+    // Small delay debug
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
     json identify_payload = {{"op", 2}, {"d", {{"username", username}, {"password", password}}}};
-    std::string id_str = identify_payload.dump();
+    std::string id_str = identify_payload.dump() + "\n";
     send(sock, id_str.c_str(), id_str.length(), 0);
 
+    // Debug
+    std::cout << "[DEBUG] Identifying as: " << username << std::endl;
     // State 
     std::vector<Server> discord_tree;
     int selected_server = 0;
