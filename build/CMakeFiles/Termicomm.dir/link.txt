@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Termicomm.dir/src/main.cpp.o -o Termicomm  _deps/ftxui-build/libftxui-screen.a _deps/ftxui-build/libftxui-dom.a _deps/ftxui-build/libftxui-component.a /usr/lib/x86_64-linux-gnu/libsqlite3.so -lopus -lportaudio -lasound -lm -lpthread _deps/ftxui-build/libftxui-dom.a _deps/ftxui-build/libftxui-screen.a 
