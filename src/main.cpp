@@ -15,12 +15,19 @@
 #include <algorithm>
 #include <map>
 #include "../include/json.hpp" 
+#include "../include/base64.hpp" // NEW BASE64 HEADER
 #include <portaudio.h>
 
 using namespace ftxui;
 using json = nlohmann::json;
 
 std::mutex chat_mutex;
+
+// audio chat
+std::map<std::string, std::chrono::steady_clock::time_point> last_voice_activity;
+std::mutex audio_time_mutex;
+
+std::chrono::steady_clock::time_point last_audio_received;
 
 // SSO
 void save_session(std::string user, std::string ip) {
@@ -73,6 +80,10 @@ void start_voice_chat(std::string target_ip) {
         while (is_mic_active) {
             int bytes = recv(udp_sock, buffer, sizeof(buffer), 0);
             if (bytes > 0) {
+                {
+                    std::lock_guard<std::mutex> lock(audio_time_mutex);
+                    last_audio_received = std::chrono::steady_clock::now();
+                }
                 Pa_WriteStream(output_stream, buffer, FRAMES_PER_BUFFER);
             }
         }
@@ -84,7 +95,6 @@ void stop_voice_chat() {
     is_mic_active = false;
     Pa_Terminate();
 }
-
 
 struct Channel { int id; std::string name; };
 struct Server { int id; std::string name; std::vector<Channel> channels; };
@@ -118,33 +128,22 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    // Small delay debug
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
     json identify_payload = {{"op", 2}, {"d", {{"username", username}, {"password", password}}}};
     std::string id_str = identify_payload.dump() + "\n";
     send(sock, id_str.c_str(), id_str.length(), 0);
 
-    // Debug
     std::cout << "[DEBUG] Identifying as: " << username << std::endl;
+    
     // State 
     std::vector<Server> discord_tree;
-    int selected_server = 0;
-    int selected_channel = 0;
-    int previous_server = -1; 
-
-    std::vector<std::string> server_names;
-    std::vector<std::string> channel_names;
-
+    int selected_server = 0, selected_channel = 0, previous_server = -1; 
+    std::vector<std::string> server_names, channel_names, online_users, voice_users;
     std::map<int, std::vector<std::string>> chat_histories;
-    std::vector<std::string> online_users;
-    std::vector<std::string> voice_users;
     bool in_voice = false;    
-    std::string input_content;
+    std::string input_content, new_server_input, new_channel_input;
     int scroll_offset = 0; 
-
-    std::string new_server_input;
-    std::string new_channel_input;
 
     // UI 
     auto server_menu = Menu(&server_names, &selected_server);
@@ -190,6 +189,50 @@ int main(int argc, char* argv[]) {
                 return true;
             }
 
+            // --- FILE SHARING (BASE64 ENCODED) ---
+            if (input_content.find("/share ") == 0) {
+                std::string filename = input_content.substr(7); 
+                std::ifstream file(filename, std::ios::binary);
+                
+                if (file.is_open()) {
+                    std::string raw_content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+                    std::string encoded_content = base64_encode(raw_content); // ENCODE BINARY DATA
+                    
+                    json file_req = {
+                        {"op", 10}, 
+                        {"d", {
+                            {"filename", filename}, 
+                            {"data", encoded_content}, 
+                            {"channel_id", discord_tree[selected_server].channels[selected_channel].id}
+                        }}
+                    };
+                        
+                    std::string payload = file_req.dump() + "\n";
+                    send(sock, payload.c_str(), payload.length(), 0);
+                }
+                input_content.clear();
+                return true;
+            }
+
+            // Get file list
+            if (input_content == "/files") {
+                json req = {{"op", 11}, {"d", {}}};
+                std::string p = req.dump() + "\n";
+                send(sock, p.c_str(), p.length(), 0);
+                input_content.clear();
+                return true;
+            }
+
+            // Request File Download
+            if (input_content.find("/get ") == 0) {
+                std::string filename = input_content.substr(5);
+                json req = {{"op", 12}, {"d", {{"filename", filename}}}};
+                std::string p = req.dump() + "\n";
+                send(sock, p.c_str(), p.length(), 0);
+                input_content.clear();
+                return true;
+            }            
+
             if (!discord_tree.empty() && !discord_tree[selected_server].channels.empty()) {
                 int active_channel_id = discord_tree[selected_server].channels[selected_channel].id;
                 json outbound = {
@@ -211,12 +254,7 @@ int main(int argc, char* argv[]) {
     });
 
     auto main_container = Container::Horizontal({
-        Container::Vertical({
-            server_menu,
-            new_server_handler,
-            channel_menu,
-            new_channel_handler
-        }),
+        Container::Vertical({ server_menu, new_server_handler, channel_menu, new_channel_handler }),
         chat_handler
     });
 
@@ -224,7 +262,7 @@ int main(int argc, char* argv[]) {
 
     // Listener Thread
     std::thread listener([&]() {
-        char buffer[8192]; // Buffer increased for network bridge packets
+        char buffer[8192];
         while (true) {
             int bytes = recv(sock, buffer, sizeof(buffer) - 1, 0);
             if (bytes > 0) {
@@ -237,7 +275,7 @@ int main(int argc, char* argv[]) {
                     data.erase(0, pos + 1);
 
                     try {
-                        if (line.empty() || line[0] != '{') continue; // Skip garbage
+                        if (line.empty() || line[0] != '{') continue;
                         json incoming = json::parse(line);
                         std::lock_guard<std::mutex> lock(chat_mutex);
 
@@ -246,7 +284,6 @@ int main(int argc, char* argv[]) {
                             std::string content = incoming["d"]["content"];
                             int ch_id = incoming["d"]["channel_id"];
                             chat_histories[ch_id].push_back(author + ": " + content);
-                            
                             if (!discord_tree.empty() && !discord_tree[selected_server].channels.empty()) {
                                 if (ch_id == discord_tree[selected_server].channels[selected_channel].id) scroll_offset = 0;
                             }
@@ -255,9 +292,7 @@ int main(int argc, char* argv[]) {
                             online_users.clear();
                             for (auto& u : incoming["d"]) online_users.push_back(u);
                         }
-                        else if (incoming["op"] == 4) { 
-                            online_users.push_back(incoming["d"]["username"]);
-                        }
+                        else if (incoming["op"] == 4) { online_users.push_back(incoming["d"]["username"]); }
                         else if (incoming["op"] == 5) { 
                             std::string left_user = incoming["d"]["username"];
                             online_users.erase(std::remove(online_users.begin(), online_users.end(), left_user), online_users.end());
@@ -267,20 +302,13 @@ int main(int argc, char* argv[]) {
                             std::string v_user = incoming["d"]["username"];
                             if (incoming["d"]["joining"]) {
                                 if (std::find(voice_users.begin(), voice_users.end(), v_user) == voice_users.end()) voice_users.push_back(v_user);
-                            } else {
-                                voice_users.erase(std::remove(voice_users.begin(), voice_users.end(), v_user), voice_users.end());
-                            }
+                            } else { voice_users.erase(std::remove(voice_users.begin(), voice_users.end(), v_user), voice_users.end()); }
                         }
-                        else if (incoming["op"] == 7) { 
-                            discord_tree.push_back({incoming["d"]["id"], incoming["d"]["name"], {}});
-                        }
+                        else if (incoming["op"] == 7) { discord_tree.push_back({incoming["d"]["id"], incoming["d"]["name"], {}}); }
                         else if (incoming["op"] == 8) { 
                             int g_id = incoming["d"]["guild_id"];
                             for (auto& s : discord_tree) {
-                                if (s.id == g_id) {
-                                    s.channels.push_back({incoming["d"]["id"], incoming["d"]["name"]});
-                                    break;
-                                }
+                                if (s.id == g_id) { s.channels.push_back({incoming["d"]["id"], incoming["d"]["name"]}); break; }
                             }
                         }
                         else if (incoming["op"] == 9) { 
@@ -291,14 +319,33 @@ int main(int argc, char* argv[]) {
                                 discord_tree.push_back(new_server);
                             }
                         }
-                    } catch (const std::exception& e) {
-                        std::cerr << "[JSON ERR] Caught mangled packet: " << e.what() << std::endl;
-                        continue; 
-                    }
+                        else if (incoming["op"] == 11) {
+                            std::string list_str = "SERVER FILES: ";
+                            for (auto& f : incoming["d"]) list_str += "[" + std::string(f) + "] ";
+                            if (!discord_tree.empty() && !discord_tree[selected_server].channels.empty()) {
+                                int active_id = discord_tree[selected_server].channels[selected_channel].id;
+                                chat_histories[active_id].push_back("SYSTEM: " + list_str);
+                            }
+                        }
+                        // FILE DOWNLOAD (BASE64 DECODED) 
+                        else if (incoming["op"] == 12) {
+                            std::string filename = incoming["d"]["filename"];
+                            std::string encoded_data = incoming["d"]["data"];
+                            std::string decoded_data = base64_decode(encoded_data); // DECODE TO BINARY
+                            
+                            std::ofstream outfile("downloaded_" + filename, std::ios::binary);
+                            if (outfile.is_open()) {
+                                outfile << decoded_data;
+                                outfile.close();
+                                if (!discord_tree.empty() && !discord_tree[selected_server].channels.empty()) {
+                                    int active_id = discord_tree[selected_server].channels[selected_channel].id;
+                                    chat_histories[active_id].push_back("SYSTEM: Saved 'downloaded_" + filename + "'");
+                                }
+                            }
+                        }                        
+                    } catch (const std::exception& e) { continue; }
                 }
-            } else {
-                break; 
-            }
+            } else { break; }
         }
     });
     listener.detach();
@@ -311,36 +358,36 @@ int main(int argc, char* argv[]) {
     });
     ui_refresher.detach();
 
-    // --- RENDERER ---
     auto renderer = Renderer(main_container, [&] {
-
         std::lock_guard<std::mutex> lock(chat_mutex);
-        Elements message_list;
-        Elements user_elements;
+        Elements message_list, user_elements, voice_elements;
         
         for (const auto& u : online_users) user_elements.push_back(text(" " + u) | color(u == username ? Color::Green : Color::White));
         
-        Elements voice_elements;
-        for (const auto& vu : voice_users) voice_elements.push_back(text(" 🔊 " + vu) | dim);
+        auto now = std::chrono::steady_clock::now();
+        for (const auto& vu : voice_users) {
+            bool is_active = false;
+            {
+                std::lock_guard<std::mutex> lock(audio_time_mutex);
+                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_audio_received).count();
+                if (duration < 500) is_active = true;
+            }
+            if (is_active) voice_elements.push_back(text(" 🔊 " + vu) | color(Color::White) | bold);
+            else voice_elements.push_back(text(" 🔊 " + vu) | color(Color::GrayDark));
+        }
 
         server_names.clear();
         for (const auto& s : discord_tree) server_names.push_back(s.name);
 
-        if (discord_tree.empty()) {
-            return hbox({text("Waiting for server sync...") | center});
-        }
+        if (discord_tree.empty()) return hbox({text("Waiting for server sync...") | center});
 
-        // Prevent Segfaults if vectors change
         if (selected_server >= (int)discord_tree.size()) selected_server = std::max(0, (int)discord_tree.size() - 1);
 
         if (selected_server != previous_server) {
             channel_names.clear();
             for (const auto& c : discord_tree[selected_server].channels) channel_names.push_back("# " + c.name);
-            selected_channel = 0;
-            scroll_offset = 0;
-            previous_server = selected_server;
+            selected_channel = 0; scroll_offset = 0; previous_server = selected_server;
         } else {
-            // Keep channels updated if new ones are added
             channel_names.clear();
             for (const auto& c : discord_tree[selected_server].channels) channel_names.push_back("# " + c.name);
         }
@@ -354,7 +401,6 @@ int main(int argc, char* argv[]) {
             current_c_name = "#" + discord_tree[selected_server].channels[selected_channel].name;
             
             auto& current_chat = chat_histories[active_channel_id]; 
-            // User can adjust it
             int max_lines_on_screen = 30; 
             int total_msgs = current_chat.size();
             
@@ -373,29 +419,9 @@ int main(int argc, char* argv[]) {
         }
 
         return hbox({
-            // LEFT SIDEBAR
-            vbox({ 
-                text(" SERVERS ") | bold | center, separator(), 
-                server_menu->Render(), separator(), new_server_handler->Render(),
-                separator(),
-                text(" CHANNELS ") | bold | center, separator(), 
-                channel_menu->Render() | flex, separator(), new_channel_handler->Render()
-            }) | border | size(WIDTH, EQUAL, 30),
-            
-            // MIDDLE CHAT
-            vbox({
-                text(" termicomm // " + current_s_name + " // " + (discord_tree[selected_server].channels.empty() ? "None" : discord_tree[selected_server].channels[selected_channel].name)) | bold | color(Color::Cyan),
-                separator(),
-                vbox(std::move(message_list)) | flex, 
-                separator(),
-                hbox({ text(" > ") | bold, chat_handler->Render() })
-            }) | flex | border,
-
-            // RIGHT SIDEBAR
-            vbox({
-                text(" ONLINE (" + std::to_string(online_users.size()) + ") ") | bold | center, separator(), vbox(std::move(user_elements)), filler(),
-                text(" VOICE (" + std::to_string(voice_users.size()) + ") ") | bold | center, separator(), vbox(std::move(voice_elements))
-            }) | border | size(WIDTH, EQUAL, 20)
+            vbox({ text(" SERVERS ") | bold | center, separator(), server_menu->Render(), separator(), new_server_handler->Render(), separator(), text(" CHANNELS ") | bold | center, separator(), channel_menu->Render() | flex, separator(), new_channel_handler->Render() }) | border | size(WIDTH, EQUAL, 30),
+            vbox({ text(" termicomm // " + current_s_name + " // " + (discord_tree[selected_server].channels.empty() ? "None" : discord_tree[selected_server].channels[selected_channel].name)) | bold | color(Color::Cyan), separator(), vbox(std::move(message_list)) | flex, separator(), hbox({ text(" > ") | bold, chat_handler->Render() }) }) | flex | border,
+            vbox({ text(" ONLINE (" + std::to_string(online_users.size()) + ") ") | bold | center, separator(), vbox(std::move(user_elements)), filler(), text(" VOICE (" + std::to_string(voice_users.size()) + ") ") | bold | center, separator(), vbox(std::move(voice_elements)) }) | border | size(WIDTH, EQUAL, 20)
         });
     });
 
