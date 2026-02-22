@@ -1,0 +1,24 @@
+# --- Binaries & Build Artifacts ---
+build/
+bin/
+*.o
+*.out
+Termicomm
+termicomm_server
+
+# --- Databases ---
+# We ignore these so the judges start with a fresh DB 
+# and don't overwrite your local test data.
+*.db
+*.db-journal
+
+# --- Session & Local Config ---
+.termicomm_session
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- System Files ---
+.DS_Store
+Thumbs.db

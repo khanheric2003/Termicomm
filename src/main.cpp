@@ -238,6 +238,7 @@ int main(int argc, char* argv[]) {
                     data.erase(0, pos + 1);
 
                     try {
+                        if (line.empty() || line[0] != '{') continue; // Skip garbage
                         json incoming = json::parse(line);
                         std::lock_guard<std::mutex> lock(chat_mutex);
 
@@ -291,7 +292,10 @@ int main(int argc, char* argv[]) {
                                 discord_tree.push_back(new_server);
                             }
                         }
-                    } catch (...) {}
+                    } catch (
+                        std::cerr << "[JSON ERR] Caught mangled packet: " << e.what() << std::endl;
+                        continue;
+                    ) {}
                 }
             } else {
                 break; 

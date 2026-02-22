@@ -141,7 +141,7 @@ void handle_client(int client_socket) {
                 send(client_socket, sync_str.c_str(), sync_str.length(), 0);
                 
                 // TEST adding sleep for server side
-                std::this_thread::sleep_for(std::chrono::milliseconds(50));
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
                 
                 json join_msg = {{"op", 4}, {"d", {{"username", username}}}};
                 broadcast(join_msg.dump(), client_socket);
@@ -176,7 +176,7 @@ void handle_client(int client_socket) {
                     // Send Tree with newline for client delimiter logic
                     std::string tree_str = tree_msg.dump() + "\n";
                     send(client_socket, tree_str.c_str(), tree_str.length(), 0);
-                    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+                    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
                     // 4. Send Message History
                     sqlite3_stmt* hist_stmt;
@@ -194,7 +194,7 @@ void handle_client(int client_socket) {
                             };
                             std::string hist_str = hist_msg.dump() + "\n";
                             send(client_socket, hist_str.c_str(), hist_str.length(), 0);
-                            std::this_thread::sleep_for(std::chrono::milliseconds(5)); 
+                            std::this_thread::sleep_for(std::chrono::milliseconds(50)); 
                         }
                     }
                     sqlite3_finalize(hist_stmt);
