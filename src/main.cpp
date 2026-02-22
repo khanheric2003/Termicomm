@@ -351,12 +351,13 @@ int main(int argc, char* argv[]) {
             current_c_name = "#" + discord_tree[selected_server].channels[selected_channel].name;
             
             auto& current_chat = chat_histories[active_channel_id]; 
-            int max_lines_on_screen = 25; 
+            // User can adjust it
+            int max_lines_on_screen = 30; 
             int total_msgs = current_chat.size();
             
             if (scroll_offset < 0) scroll_offset = 0;
             int max_scroll = std::max(0, total_msgs - max_lines_on_screen);
-            if (scroll_offset > ms) scroll_offset = ms;
+            if (scroll_offset > max_scroll) scroll_offset = max_scroll;
 
             int start_idx = std::max(0, total_msgs - max_lines_on_screen - scroll_offset);
             int end_idx = std::min(total_msgs, start_idx + max_lines_on_screen);
