@@ -119,7 +119,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Small delay debug
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
     json identify_payload = {{"op", 2}, {"d", {{"username", username}, {"password", password}}}};
     std::string id_str = identify_payload.dump() + "\n";
@@ -156,7 +156,7 @@ int main(int argc, char* argv[]) {
     auto new_server_handler = CatchEvent(new_server_box, [&](Event e) {
         if (e == Event::Return && !new_server_input.empty()) {
             json req = {{"op", 7}, {"d", {{"name", new_server_input}}}};
-            std::string payload = req.dump();
+            std::string payload = req.dump() + "\n";
             send(sock, payload.c_str(), payload.length(), 0);
             new_server_input.clear();
             return true;
@@ -167,7 +167,7 @@ int main(int argc, char* argv[]) {
     auto new_channel_handler = CatchEvent(new_channel_box, [&](Event e) {
         if (e == Event::Return && !new_channel_input.empty() && !discord_tree.empty()) {
             json req = {{"op", 8}, {"d", {{"guild_id", discord_tree[selected_server].id}, {"name", new_channel_input}}}};
-            std::string payload = req.dump();
+            std::string payload = req.dump() + "\n";
             send(sock, payload.c_str(), payload.length(), 0);
             new_channel_input.clear();
             return true;
@@ -184,7 +184,7 @@ int main(int argc, char* argv[]) {
                 else stop_voice_chat();
 
                 json voice_out = {{"op", 6}, {"d", {{"joining", in_voice}}}};
-                std::string v_payload = voice_out.dump();
+                std::string v_payload = voice_out.dump() + "\n";
                 send(sock, v_payload.c_str(), v_payload.length(), 0);
                 input_content.clear();
                 return true;
@@ -196,7 +196,7 @@ int main(int argc, char* argv[]) {
                     {"op", 0}, {"t", "MESSAGE_CREATE"},
                     {"d", {{"content", input_content}, {"channel_id", active_channel_id}}}
                 };
-                std::string payload = outbound.dump();
+                std::string payload = outbound.dump() + "\n";
                 send(sock, payload.c_str(), payload.length(), 0);
             }
             
@@ -224,66 +224,75 @@ int main(int argc, char* argv[]) {
 
     // Listener Thread
     std::thread listener([&]() {
-        char buffer[4096];
+        char buffer[8192]; // Buffer increased for network bridge packets
         while (true) {
             int bytes = recv(sock, buffer, sizeof(buffer) - 1, 0);
             if (bytes > 0) {
                 buffer[bytes] = '\0';
-                try {
-                    json incoming = json::parse(buffer);
-                    std::lock_guard<std::mutex> lock(chat_mutex);
+                
+                // New logic: Use a stringstream or string search to handle clumped packets
+                std::string data(buffer);
+                size_t pos = 0;
+                while ((pos = data.find('\n')) != std::string::npos) {
+                    std::string line = data.substr(0, pos);
+                    data.erase(0, pos + 1);
 
-                    if (incoming["op"] == 0) {
-                        std::string author = incoming["d"]["author"]["username"];
-                        std::string content = incoming["d"]["content"];
-                        int ch_id = incoming["d"]["channel_id"];
-                        chat_histories[ch_id].push_back(author + ": " + content);
-                        
-                        if (!discord_tree.empty() && !discord_tree[selected_server].channels.empty()) {
-                            if (ch_id == discord_tree[selected_server].channels[selected_channel].id) scroll_offset = 0;
-                        }
-                    }
-                    else if (incoming["op"] == 3) { 
-                        online_users.clear();
-                        for (auto& u : incoming["d"]) online_users.push_back(u);
-                    }
-                    else if (incoming["op"] == 4) { 
-                        online_users.push_back(incoming["d"]["username"]);
-                    }
-                    else if (incoming["op"] == 5) { 
-                        std::string left_user = incoming["d"]["username"];
-                        online_users.erase(std::remove(online_users.begin(), online_users.end(), left_user), online_users.end());
-                        voice_users.erase(std::remove(voice_users.begin(), voice_users.end(), left_user), voice_users.end());
-                    }
-                    else if (incoming["op"] == 6) { 
-                        std::string v_user = incoming["d"]["username"];
-                        if (incoming["d"]["joining"]) {
-                            if (std::find(voice_users.begin(), voice_users.end(), v_user) == voice_users.end()) voice_users.push_back(v_user);
-                        } else {
-                            voice_users.erase(std::remove(voice_users.begin(), voice_users.end(), v_user), voice_users.end());
-                        }
-                    }
-                    else if (incoming["op"] == 7) { 
-                        discord_tree.push_back({incoming["d"]["id"], incoming["d"]["name"], {}});
-                    }
-                    else if (incoming["op"] == 8) { 
-                        int g_id = incoming["d"]["guild_id"];
-                        for (auto& s : discord_tree) {
-                            if (s.id == g_id) {
-                                s.channels.push_back({incoming["d"]["id"], incoming["d"]["name"]});
-                                break;
+                    try {
+                        json incoming = json::parse(line);
+                        std::lock_guard<std::mutex> lock(chat_mutex);
+
+                        if (incoming["op"] == 0) {
+                            std::string author = incoming["d"]["author"]["username"];
+                            std::string content = incoming["d"]["content"];
+                            int ch_id = incoming["d"]["channel_id"];
+                            chat_histories[ch_id].push_back(author + ": " + content);
+                            
+                            if (!discord_tree.empty() && !discord_tree[selected_server].channels.empty()) {
+                                if (ch_id == discord_tree[selected_server].channels[selected_channel].id) scroll_offset = 0;
                             }
                         }
-                    }
-                    else if (incoming["op"] == 9) { 
-                        discord_tree.clear();
-                        for (auto& g : incoming["d"]) {
-                            Server new_server{g["id"], g["name"], {}};
-                            for (auto& c : g["channels"]) new_server.channels.push_back({c["id"], c["name"]});
-                            discord_tree.push_back(new_server);
+                        else if (incoming["op"] == 3) { 
+                            online_users.clear();
+                            for (auto& u : incoming["d"]) online_users.push_back(u);
                         }
-                    }
-                } catch (json::parse_error& e) {}
+                        else if (incoming["op"] == 4) { 
+                            online_users.push_back(incoming["d"]["username"]);
+                        }
+                        else if (incoming["op"] == 5) { 
+                            std::string left_user = incoming["d"]["username"];
+                            online_users.erase(std::remove(online_users.begin(), online_users.end(), left_user), online_users.end());
+                            voice_users.erase(std::remove(voice_users.begin(), voice_users.end(), left_user), voice_users.end());
+                        }
+                        else if (incoming["op"] == 6) { 
+                            std::string v_user = incoming["d"]["username"];
+                            if (incoming["d"]["joining"]) {
+                                if (std::find(voice_users.begin(), voice_users.end(), v_user) == voice_users.end()) voice_users.push_back(v_user);
+                            } else {
+                                voice_users.erase(std::remove(voice_users.begin(), voice_users.end(), v_user), voice_users.end());
+                            }
+                        }
+                        else if (incoming["op"] == 7) { 
+                            discord_tree.push_back({incoming["d"]["id"], incoming["d"]["name"], {}});
+                        }
+                        else if (incoming["op"] == 8) { 
+                            int g_id = incoming["d"]["guild_id"];
+                            for (auto& s : discord_tree) {
+                                if (s.id == g_id) {
+                                    s.channels.push_back({incoming["d"]["id"], incoming["d"]["name"]});
+                                    break;
+                                }
+                            }
+                        }
+                        else if (incoming["op"] == 9) { 
+                            discord_tree.clear();
+                            for (auto& g : incoming["d"]) {
+                                Server new_server{g["id"], g["name"], {}};
+                                for (auto& c : g["channels"]) new_server.channels.push_back({c["id"], c["name"]});
+                                discord_tree.push_back(new_server);
+                            }
+                        }
+                    } catch (...) {}
+                }
             } else {
                 break; 
             }
@@ -319,7 +328,7 @@ int main(int argc, char* argv[]) {
         }
 
         // Prevent Segfaults if vectors change
-        if (selected_server >= discord_tree.size()) selected_server = std::max(0, (int)discord_tree.size() - 1);
+        if (selected_server >= (int)discord_tree.size()) selected_server = std::max(0, (int)discord_tree.size() - 1);
 
         if (selected_server != previous_server) {
             channel_names.clear();
@@ -337,7 +346,7 @@ int main(int argc, char* argv[]) {
         std::string current_c_name = "No Channels";
         
         if (!discord_tree[selected_server].channels.empty()) {
-            if (selected_channel >= discord_tree[selected_server].channels.size()) selected_channel = std::max(0, (int)discord_tree[selected_server].channels.size() - 1);
+            if (selected_channel >= (int)discord_tree[selected_server].channels.size()) selected_channel = std::max(0, (int)discord_tree[selected_server].channels.size() - 1);
             int active_channel_id = discord_tree[selected_server].channels[selected_channel].id;
             current_c_name = "#" + discord_tree[selected_server].channels[selected_channel].name;
             
@@ -347,7 +356,7 @@ int main(int argc, char* argv[]) {
             
             if (scroll_offset < 0) scroll_offset = 0;
             int max_scroll = std::max(0, total_msgs - max_lines_on_screen);
-            if (scroll_offset > max_scroll) scroll_offset = max_scroll;
+            if (scroll_offset > ms) scroll_offset = ms;
 
             int start_idx = std::max(0, total_msgs - max_lines_on_screen - scroll_offset);
             int end_idx = std::min(total_msgs, start_idx + max_lines_on_screen);
@@ -371,7 +380,7 @@ int main(int argc, char* argv[]) {
             
             // MIDDLE CHAT
             vbox({
-                text(" termicomm // " + current_s_name + " // " + current_c_name) | bold | color(Color::Cyan),
+                text(" termicomm // " + current_s_name + " // " + (discord_tree[selected_server].channels.empty() ? "None" : discord_tree[selected_server].channels[selected_channel].name)) | bold | color(Color::Cyan),
                 separator(),
                 vbox(std::move(message_list)) | flex, 
                 separator(),

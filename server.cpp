@@ -73,15 +73,17 @@ void init_server_db() {
 }
 
 void handle_client(int client_socket) {
-    char buffer[2048];
+    char buffer[4096]; // Increased buffer size for larger sync packets
     std::string username = "Unknown";
     bool identified = false;
 
     auto broadcast = [&](const std::string& msg, int ignore_sock = -1) {
+        // Add newline to broadcast for protocol reliability
+        std::string formatted_msg = msg + "\n";
         std::lock_guard<std::mutex> lock(clients_mutex);
         for (auto it = clients.begin(); it != clients.end(); ) {
             if (it->socket != ignore_sock) {
-                if (send(it->socket, msg.c_str(), msg.length(), 0) < 0) {
+                if (send(it->socket, formatted_msg.c_str(), formatted_msg.length(), 0) < 0) {
                     close(it->socket);
                     it = clients.erase(it);
                     continue;
@@ -92,7 +94,9 @@ void handle_client(int client_socket) {
     };
 
     while (true) {
+        memset(buffer, 0, sizeof(buffer));
         int bytes_received = recv(client_socket, buffer, sizeof(buffer) - 1, 0);
+        
         // Debug
         if (bytes_received > 0) {
             buffer[bytes_received] = '\0';
@@ -131,10 +135,14 @@ void handle_client(int client_socket) {
                 }
                 identified = true;
 
+                // Added newline and flush for network bridge stability
                 json sync_users = {{"op", 3}, {"d", current_users}};
-                std::string sync_str = sync_users.dump();
+                std::string sync_str = sync_users.dump() + "\n";
                 send(client_socket, sync_str.c_str(), sync_str.length(), 0);
-
+                
+                // TEST adding sleep for server side
+                std::this_thread::sleep_for(std::chrono::milliseconds(50));
+                
                 json join_msg = {{"op", 4}, {"d", {{"username", username}}}};
                 broadcast(join_msg.dump(), client_socket);
 
@@ -165,10 +173,10 @@ void handle_client(int client_socket) {
                     }
                     sqlite3_finalize(stmt);
                     
-                    // Send Tree
-                    std::string tree_str = tree_msg.dump();
+                    // Send Tree with newline for client delimiter logic
+                    std::string tree_str = tree_msg.dump() + "\n";
                     send(client_socket, tree_str.c_str(), tree_str.length(), 0);
-                    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                    std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
                     // 4. Send Message History
                     sqlite3_stmt* hist_stmt;
@@ -184,9 +192,9 @@ void handle_client(int client_socket) {
                                 {"t", "MESSAGE_CREATE"},
                                 {"d", {{"content", msg_content}, {"channel_id", ch_id}, {"author", {{"username", msg_author}}}}}
                             };
-                            std::string hist_str = hist_msg.dump();
+                            std::string hist_str = hist_msg.dump() + "\n";
                             send(client_socket, hist_str.c_str(), hist_str.length(), 0);
-                            std::this_thread::sleep_for(std::chrono::milliseconds(2)); 
+                            std::this_thread::sleep_for(std::chrono::milliseconds(5)); 
                         }
                     }
                     sqlite3_finalize(hist_stmt);
@@ -275,7 +283,9 @@ void handle_client(int client_socket) {
                 }
             }
 
-        } catch (json::parse_error& e) {}
+        } catch (json::parse_error& e) {
+             std::cerr << "[ERR] Parse Fail: " << e.what() << std::endl;
+        }
     }
     close(client_socket);
 }
